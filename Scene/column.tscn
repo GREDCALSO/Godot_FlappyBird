@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://chcbehtxyr6kw"]
+
+[ext_resource type="Texture2D" uid="uid://cv35fsa6ntfb" path="res://art/pipe.png" id="1_5f743"]
+[ext_resource type="Script" uid="uid://c6rpd11q77feo" path="res://Scripts/column.gd" id="1_tlovw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlovw"]
+size = Vector2(67, 470)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2u5h"]
+size = Vector2(66, 457)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb3s3"]
+size = Vector2(63, 139)
+
+[node name="Column" type="Area2D"]
+script = ExtResource("1_tlovw")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["pipes"]]
+texture = ExtResource("1_5f743")
+
+[node name="upper" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -310)
+shape = SubResource("RectangleShape2D_tlovw")
+
+[node name="below" type="CollisionShape2D" parent="."]
+position = Vector2(0, 302.5)
+shape = SubResource("RectangleShape2D_w2u5h")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0.499998, 0.499996)
+scale = Vector2(3.45, 7.25)
+
+[node name="ScoreZone" type="Area2D" parent="." groups=["ScoreArea"]]
+
+[node name="Score" type="CollisionShape2D" parent="ScoreZone"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_gb3s3")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="Delete"]

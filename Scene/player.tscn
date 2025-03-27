@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5q1w1tn7a5vb"]
+
+[ext_resource type="Script" uid="uid://d2flsfmcey5qh" path="res://Scripts/player.gd" id="1_y8w33"]
+[ext_resource type="Texture2D" uid="uid://d0eftp4j6kvui" path="res://art/0.png" id="2_ij4jb"]
+[ext_resource type="Texture2D" uid="uid://6ukm0gpxeeti" path="res://art/1.png" id="3_c68nv"]
+[ext_resource type="Texture2D" uid="uid://bf0rjsc2x0cke" path="res://art/2.png" id="4_c31lq"]
+[ext_resource type="Texture2D" uid="uid://n4lshdt15l3j" path="res://art/3.png" id="5_2dof7"]
+[ext_resource type="Texture2D" uid="uid://7cu5als4uebb" path="res://art/4.png" id="6_4ao7i"]
+[ext_resource type="Texture2D" uid="uid://br2ht4etcnn15" path="res://art/5.png" id="7_1sypm"]
+[ext_resource type="Texture2D" uid="uid://dv0t1safe2ws" path="res://art/6.png" id="8_fn0wv"]
+[ext_resource type="Texture2D" uid="uid://bivhf6ixm26yb" path="res://art/7.png" id="9_eqmt2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ij4jb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c68nv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c31lq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2dof7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4ao7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1sypm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fn0wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_eqmt2")
+}],
+"loop": true,
+"name": &"bird",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c40dt"]
+size = Vector2(49, 37)
+
+[node name="Player" type="Area2D"]
+position = Vector2(216, 322)
+script = ExtResource("1_y8w33")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"bird"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_c40dt")
+
+[connection signal="area_entered" from="." to="." method="fallout"]
